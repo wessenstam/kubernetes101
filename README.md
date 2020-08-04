@@ -1,10 +1,10 @@
 Kubernetes 101 Workshop
-+++++++++++++++++++++++
+-----------------------
 
 Workshop resources to get the understanding of Kubernetes (K8s)
 
 High level agenda
-^^^^^^^^^^^^^^^^^
+-----------------
 1. Pre requirements needed
   
   - VirtualBox
