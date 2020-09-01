@@ -1,4 +1,4 @@
-.. title:: Introduction to Docker
+.. title:: Introduction to Kubernetes
 
 .. toctree::
   :maxdepth: 2
@@ -6,21 +6,21 @@
   :name: _labs
   :hidden:
 
-  containers/containers
+  k8s/k8s
   day1/day1
   day2/day2
   day3/day3
   day4/day4
   day5/day5
-  day6/day6
-  day7/day7
 
 .. _getting_started:
 
 ---------------------
 Scenario introduction
 ---------------------
-Welcome to a day in the life of an administrator called John. John is working for an organization that is thinking about if it would be possible to put one of their applications, a NGINX Load balancer and some NGINX based web servers into a container based workload. Today the application consists of Virtual Machines based on the Linux Distribution Ubuntu 18.04 LTS.
+Welcome to a day in the life of an administrator called John. John is working for an organization that asks him to investigate if Kubernetes would be usable for their main workload. John already came to the conclusion that their main workload, a NGINX Load balancer and some NGINX based web servers, can be running as a container based workload (https://docs.google.com/document/d/1MABUIov_9WeTFKC4xG2eVSX_SrtGS1SbziU4OeHif1g). Today the application consists of Virtual Machines based on the Linux Distribution Ubuntu 18.04 LTS. John has the images of the container save and sound on his Docker hub account.
+
+.. figure:: images/01.png
 
 .. _requirements:
 
@@ -29,76 +29,62 @@ Requirements
 
 John has been asked to investigate the following set requirements by the organization:
 
-#. Containerization using Docker.
-#. Should be able to be “transported” to cloud platforms like AWS and GCP.
-#. Changing the configuration should be outside of the container, if it can be done.
-#. Changes to configuration and the web application should not be lost in case of a restart/reboot of the container
-#. A reboot of the host that serves the container should not impact the accessibility of the containerized web servers (read application).
-#. Update to the containers must have:
-   
-   #. A fall back path
-   #. No impact on application delivery
+- Use of the Docker images.
+- Changing the configuration should be outside of the container, if it can be done.
+- Changes to configuration and the web application should not be lost in case of a restart/reboot of the container
+- A reboot of the host that serves the container should not impact the accessibility of the containerized web servers (read application).
+- Update to the images or configuration must have:
+    
+  + A roll back path
+  + No impact on application delivery
 
-#. Stretched goal: deployment of the containers, when there is an update, gets automated.
+- Workloads should be able to scale out and in due to seasonal load on the application.
+- Create the needed resources so they can be “transported” to AWS, GCP or Azure as all of the cloud providers have Kubernetes possibilities natively available.
 
-John has no to little experience with containers and wants this investigation to also help him in getting a better understanding of containers and the workloads that can be used in this world.
-To support John in his quest he has created a path to get his knowledge up and running in small steps. The path he created looks like this:
+John has no experience with Kubernetes, but has done in an earlier stage some research and discovered that setting up a Kubernetes cluster has been marked as not easy and decides then to go for Docker Swarm. Today that needs to change and see how difficult it is to get a Kubernetes cluster running. He has set the overall path to get his knowledge to a higher level:
 
-- What are containers?
-- For what workloads can I use it and would it fit the set request?
-- What the pre-requirements to get started with Docker?
-- Can I use pre-build containers that are out there, if any?
-- How can I create my own containers if the prebuilt are not solving my issues?
-- How can I make the solution for LB and 1 container?
-- How can I make the solution scale?
-- How can I deploy new containers after there has been an update? (stretched goal)
+- What is Kubernetes and why the k8s??
+- What are pros and cons of Kubernetes vs Docker Swarm?
+- How can I start to explore Kubernetes on my laptop?
+- How do I interact with the k8s cluster?
+- How can I use the already built container images?
+- How to use external storage, so outside of the container?
+  
+  + For configuration?
+  + For files that need to be “shared”?
 
-This workshop is showing you how John steps through most of the set items in his path... 
+This workshop is showing you how John steps through all the set items in his path..
 
-.. note::
-  The workshop can be run fully from your own laptop as it is not using any Nutanix related features. It is built to let you get familiar with Docker and Docker Swarm. The total amount of time for the workshop is a full day.
-  Commands that need to be run are in **bold** so you can keep track and find them easily.
 
 
 Agenda
-++++++++++
+++++++
 
-- What are containers?
-- Day 1 - General Docker
+- What is Kubernetes and why k8s as the acronymn?
+- Day 1 - Getting to understand how to run applications
 
-  + Needed resources to build the test environment
-  + Installing Docker
-  + Run first container
-  + Container management
-  + Docker usefull commands
+  + General understanding
+  + YAML Files for deployments
+  + Build the test environment
 
-- Day 2 - Advanced Docker
+- Day 2 - Getting the earlier build images up and running in k8s
 
-  + Change and create images/containers
+  + Start the tes environment
+  + Preparation for the project
+  + Create YAML files
+  + Pod or deployment?
 
-- Day 3 - More advanced Docker
+- Day 3 - Getting the external storage in the container and ingress
 
-  + Detach files from conatiner images
+  + Create a NFS server
+  + Understand the external storage concept in k8s
+  + Create Persistent Volumes (PV) and PV Claims (PVC)
+  + Use of Ingress Controller and Ingress Rules
 
-- Day 4 - Connect containers together
+- Day 4 - Setting up a multi node test cluster
 
-  + Creating a loadbalancer
-  + Creating Dockerfile
+  + Create a Multi Node Cluster
+  + Deployment of the earlier created YAML files in the Newly created Cluster
+  + Deploy the Ingress Controller and Ingress rules
 
-- Day 5 - Storing images and create a HA solution
-
-  + Store images
-  + Start of Docker Swarm
-
-- Day 6 - Dockerfile and changing images with Docker Swarm
-
-  + Create a new Dockerfile
-  + Store the created images
-  + Testing failures
-
-- Day 7 - Scaling,rebalancing and Monitoring
-
-  + Scale the applications
-  + Rebalance the containers
-  + Monitor the test environment
-
+- Day 5 - Conclusion
