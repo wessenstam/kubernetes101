@@ -52,7 +52,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'ThycoticCentrify Enablement'
+project = u'Kubernetes 101'
 copyright = u'2021 ThycoticCentrify'
 author = u'ThycoticCentrify Technical Enablement'
 
