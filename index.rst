@@ -1,4 +1,4 @@
-.. title:: Introduction to Kubernetes
+.. title:: Delinea - Introduction to Kubernetes
 
 .. toctree::
   :maxdepth: 2
